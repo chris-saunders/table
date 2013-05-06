@@ -24,4 +24,4 @@ I can't think of a better way to structure this component for use with Require.J
 
 ### Licencing
 
-I don't know enough about licencing software to understand where Loader stands. Anyone can use it for personal or commerical use!
+I don't know enough about licencing software to understand where Table stands. Anyone can use it for personal or commerical use!
