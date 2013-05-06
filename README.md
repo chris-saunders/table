@@ -1,10 +1,10 @@
-# Loader
+# Table
 
-A self-contained and tested loader component written for Backbone.JS with Require.JS.
+A self-contained table component written for Backbone.JS with Require.JS
 
 ## Instructions
 
-Create a path to the loader's scripts directory in your top level require config with the key "loader".
+Create a path to the table's scripts directory in your top level require config with the key "table".
 
 ### Dependencies
 * JQuery
