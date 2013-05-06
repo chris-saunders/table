@@ -1,0 +1,14 @@
+[
+	{
+		"key": "artist",
+		"value": "Artist"
+	},
+	{
+		"key": "album",
+		"value": "Album"
+	},
+	{
+		"key": "track",
+		"value": "Track"
+	}
+]
