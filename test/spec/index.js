@@ -1,7 +1,7 @@
 define(function() {
   return {
     specs: [
-      'spec/views/TableSpec'
+      'spec/models/TableSpec'
     ]
   };
 });
