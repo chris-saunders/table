@@ -23,6 +23,17 @@ define([
 			if (! _.isArray(attrs.data)) {
 				return "Data must be an array of objects";
 			}
+
+			if (_.isEmpty(attrs.columnTitles) && _.isEmpty(attrs.data)) {
+				return "Must provide either column titles or data"
+			}
+		},
+
+		set: function(attributes, options) {
+			options = options || {};
+			options.validate = true;
+
+			return Backbone.Model.prototype.set.call(this, attributes, options);
 		}
 
 	});

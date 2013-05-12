@@ -1,88 +1,38 @@
 define([
-  "scripts/views/TableView"
-], function(TableView) {
+  "scripts/models/table",
+  "scripts/views/TableView",
+  "text!src/rows.json"
+], function(Table, TableView, Rows) {
 
   describe("Component | Table - View", function() {
 
-    var tableView,
-        testModel,
-        testCollection,
-        rowHeader,
-        rowHeaders,
-        async;
+    var view,
+        model,
+        columnTitles,
+        data;
 
-    async = new AsyncSpec(this);
-
-    async.beforeEach(function(done) {
-      $('body').append('<div class="wrapper"></div>');
-      testModel = Backbone.Model.extend();
-      testCollection = Backbone.Collection.extend({
-        model: testModel,
-        url: 'src/rows.json'
-      });
-      this.collection = new testCollection();
-      this.collection.fetch({
-        success: function(collection, response, options) {
-          tableView = new TableView({ collection: collection }).render();
-          done();
-        }
-      });
-      
+    beforeEach(function() {
+      $('body').append('<div class="tableWrapper"></div>');
+      model = new Table();
+      model.set({ data: Rows });
+      view = new TableView({ model: model }).render();
     });
 
-    async.afterEach(function(done) {
-      tableView.remove();
-      $('.wrapper').remove();
-      done();
+    afterEach(function() {
+      view.remove();
+      $('.tableWrapper').remove();
     });
 
-    it("should be tied to a DOM element when created, based off the property provided", function(done) {
-      expect(tableView.el.tagName.toLowerCase()).toBe('div');
+    it("should be tied to a DOM element when created, based off the property provided", function() {
+      expect(view.el.tagName.toLowerCase()).toBe('div');
     });
 
-    it("should have a class of 'wrapper'", function() {
-      expect(tableView.el).toHaveClass('table');
+    it("should stipulate presence of either columnTitles or data", function() {
+      // model.set({});
+      // expect(model.validationError).toBe('Column title object or data array must be provided');
     });
 
-    it("should accept an headers model", function() {
-      rowHeader = Backbone.Model.extend();
-      rowHeaders = Backbone.Collection.extend({
-        model: rowHeader,
-        url: 'src/rowHeaders.json'
-      });
-      tableView.rowHeaders = new rowHeaders();
-      tableView.rowHeaders.fetch({
-        success: function(collection, response, options) {
-          console.log(tableView.rowHeaders.toJSON())
-          tableView.render();
-          console.log(tableView.el);
-          expect(tableView.$('th')).toBeVisible();    
-        }
-      });
-      
-    });
-
-    it("is backed by a model instance", function() {
-      expect(tableView.collection).toBeDefined();
-      expect(tableView.collection.at(0).get('artist')).toBeTruthy();
-    });
-
-    it("should render the Table Template properly", function() {
-      
-      // expect(tableView.$('h1'))
-      //   .toHaveText('Welcome to Nukebox');
-    });
-
-    // it("should invoke player properly", function() {
-    //   tableView.render();
-    //   expect(tableView.$('.player')).toBeVisible();
-    // });
-
-    // it("should invoke search properly", function() {
-    //   tableView.render();
-    //   expect(tableView.$('.search')).toBeVisible();
-    // });
-
+    
   });
 
 });

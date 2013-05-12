@@ -10,14 +10,13 @@ define([
 		className: "table",
 
 		initialize: function() {
-			if (!this.rowHeaders) this.rowHeaders = [];
+
 		},
 
 		render: function() {
 			var template = Handlebars.compile(TableTpl);
-			var data = {};
-			data.rows = this.collection.toJSON()
-			this.$el.html( template({ rows: this.collection.toJSON() }) );
+
+			this.$el.html( template({ rows: this.model.get('data') }) );
 			return this;
 		}
 

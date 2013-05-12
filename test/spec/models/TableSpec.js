@@ -8,6 +8,27 @@ define([
         columnTitles,
         data;
 
+    describe("Constructor", function() {
+
+      it("should error if no data is received", function() {
+        model = new Table();
+        expect(model.validationError).toBe('Must provide either column titles or data');
+      });
+
+      it("should be able to accept columnTitles but no data", function() {
+        model = new Table({ columnTitles: columnTitles });
+        expect(model.get('columnTitles')).toEqual(columnTitles);
+        expect(model.get('data')).toEqual([]);
+      });
+
+      it("should be able to accept data but no columnTitles", function() {
+        model = new Table({ data: data });
+        expect(model.get('data')).toEqual(data);
+        expect(model.get('columnTitles')).toEqual({});
+      });
+
+    });
+
     beforeEach(function() {
       model = new Table();
       columnTitles = {
@@ -26,27 +47,15 @@ define([
       model = columnTitles = data = null;
     });
 
-    it("should be able to accept columnTitles but no data", function() {
-      model.set({ columnTitles: columnTitles });
-      expect(model.get('columnTitles')).toEqual(columnTitles);
-      expect(model.get('data')).toEqual([]);
-    });
-
-    it("should be able to accept data but no columnTitles", function() {
-      model.set({ data: data });
-      expect(model.get('data')).toEqual(data);
-      expect(model.get('columnTitles')).toEqual({});
-    });
-
     describe("Validation", function() {
 
       it("should stipulate an object for columnTitles", function() {
-        model.set({ columnTitles: ["artist", "album", "track"] }, { validate: true });
+        model.set({ columnTitles: ["artist", "album", "track"] });
         expect(model.validationError).toBe('Column titles must be a key:value object');
       });
 
       it("should stipulate an array of objects for data", function() {
-        model.set({ data: {} }, { validate: true });
+        model.set({ data: {}, columnTitles: columnTitles });
         expect(model.validationError).toBe('Data must be an array of objects');
       });
 
