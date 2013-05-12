@@ -44,6 +44,12 @@ define([
         model.set({ columnTitles: ["artist", "album", "track"] }, { validate: true });
         expect(model.validationError).toBe('Column titles must be a key:value object');
       });
+
+      it("should stipulate an array of objects for data", function() {
+        model.set({ data: {} }, { validate: true });
+        expect(model.validationError).toBe('Data must be an array of objects');
+      });
+
     });
 
   });

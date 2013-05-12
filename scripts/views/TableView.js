@@ -15,7 +15,6 @@ define([
 
 		render: function() {
 			var template = Handlebars.compile(TableTpl);
-			console.log('this', this.rowHeaders.toJSON())
 			var data = {};
 			data.rows = this.collection.toJSON()
 			this.$el.html( template({ rows: this.collection.toJSON() }) );
