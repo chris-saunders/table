@@ -1,25 +1,29 @@
 define([
   "scripts/models/table",
   "scripts/views/TableView",
+  "text!src/columnTitles.json",
   "text!src/rows.json"
-], function(Table, TableView, Rows) {
+], function(Table, TableView, ColumnTitles, Rows) {
 
   describe("Component | Table - View", function() {
 
     var view,
         model,
         columnTitles,
-        data;
+        rows;
+
+    columnTitles = $.parseJSON(ColumnTitles);
+    rows = $.parseJSON(Rows);
 
     beforeEach(function() {
       $('body').append('<div class="tableWrapper"></div>');
-      model = new Table();
-      model.set({ data: Rows });
+      model = new Table({ rows: rows, columnTitles: columnTitles });
       view = new TableView({ model: model }).render();
     });
 
     afterEach(function() {
       view.remove();
+      model = null;
       $('.tableWrapper').remove();
     });
 
@@ -27,11 +31,9 @@ define([
       expect(view.el.tagName.toLowerCase()).toBe('div');
     });
 
-    it("should stipulate presence of either columnTitles or data", function() {
-      // model.set({});
-      // expect(model.validationError).toBe('Column title object or data array must be provided');
+    it("should render column titles when supplied", function() {
+      expect(view.$('tr.columnTitles').html().toString().replace(/\s+/g, '')).toBe('<th>Artist</th><th>Album</th><th>Track</th>');
     });
-
     
   });
 

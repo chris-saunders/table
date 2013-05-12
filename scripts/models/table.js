@@ -8,7 +8,7 @@ define([
 		defaults: {
 			title: "",
 			columnTitles: {},
-			data: []
+			rows: []
 		},
 
 		initialize: function() {
@@ -16,16 +16,16 @@ define([
 
 		validate: function(attrs) {
 			
-			if (! _.isPlainObject(attrs.columnTitles)) {
+			if (! _.isObject(attrs.columnTitles)) {
 				return "Column titles must be a key:value object";
 			}
 
-			if (! _.isArray(attrs.data)) {
-				return "Data must be an array of objects";
+			if (! _.isArray(attrs.rows)) {
+				return "Rows must be an array of objects";
 			}
 
-			if (_.isEmpty(attrs.columnTitles) && _.isEmpty(attrs.data)) {
-				return "Must provide either column titles or data"
+			if (_.isEmpty(attrs.columnTitles) && _.isEmpty(attrs.rows)) {
+				return "Must provide either column titles or rows"
 			}
 		},
 

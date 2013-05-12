@@ -1,13 +1,13 @@
 <table>
-	{{#if rowHeaders}}
-		<tr>
-		{{#each rowHeaders}}
-			<th>{{this}}</th>
+	{{#if columnTitles}}
+		<tr class="columnTitles">
+		{{#each columnTitles}}
+			<th>{{this.value}}</th>
 		{{/each}}
 		</tr>
 	{{/if}}
 	{{#each rows}}
-		<tr>
+		<tr class="rows">
 			{{#each this}}
 				<td>{{this}}</td>
 			{{/each}}
