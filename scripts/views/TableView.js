@@ -18,7 +18,7 @@ define([
 
 		render: function() {
 			var template = Handlebars.compile(TableTpl);
-			this.$el.html( template(this.model.toJSON()) );
+			this.$el.html( template($.parseJSON(JSON.stringify(this.model))));
 			return this;
 		}
 
