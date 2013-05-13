@@ -10,7 +10,10 @@ define([
 		className: "table",
 
 		initialize: function() {
-
+			var self = this;
+			this.model.on('change', function() {
+				self.render();
+			});
 		},
 
 		render: function() {

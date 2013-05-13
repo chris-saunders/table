@@ -34,6 +34,12 @@ define([
     it("should render column titles when supplied", function() {
       expect(view.$('tr.columnTitles').html().toString().replace(/\s+/g, '')).toBe('<th>Artist</th><th>Album</th><th>Track</th>');
     });
+
+    it("should re-render on model changes", function() {
+      expect(view.el).toContainText('The Beatles');
+      model.set({ rows: [{ artist: "Aerosmith", album: "Dudes", track: "Sweet Emotion" }] });
+      expect(view.el).toContainText('Aerosmith');
+    });
     
   });
 
