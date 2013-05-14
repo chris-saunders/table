@@ -4,19 +4,33 @@ define([
   "text!src/rows.json"
 ], function(Table, ColumnTitles, Rows) {
 
-  describe("Component | Table - Model", function() {
+  describe("Model", function() {
 
     var model,
-        columnTitles,
-        rows;
+        columnTitles = $.parseJSON(ColumnTitles),
+        rows = $.parseJSON(Rows);
 
-    columnTitles = $.parseJSON(ColumnTitles);
-    rows = $.parseJSON(Rows);
+    beforeEach(function() {
+      model = new Table();
+    });
+
+    afterEach(function() {
+      model = null;
+    });
+
+    it("is defined", function() {
+      expect(model).not.toBeUndefined();
+    });
+
+    // Duck-typing, although I have my reservations
+    it("looks like a BB model", function() {
+      expect(_.isFunction(model.get)).toBe(true);
+      expect(_.isFunction(model.set)).toBe(true);
+    });
 
     describe("Constructor", function() {
 
       it("should error if no data is received", function() {
-        model = new Table();
         expect(model.validationError).toBe('Must provide either column titles or rows');
       });
 
@@ -34,15 +48,15 @@ define([
 
     });
 
-    beforeEach(function() {
-      model = new Table({ columnTitles: columnTitles, rows: rows });
-    });
-
-    afterEach(function() {
-      model = null;
-    });
-
     describe("Validation", function() {
+      
+      beforeEach(function() {
+        model = new Table({ columnTitles: columnTitles, rows: rows });
+      });
+
+      afterEach(function() {
+        model = null;
+      });
 
       it("should stipulate an object for column titles", function() {
         model.set({ columnTitles: '' });
