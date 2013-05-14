@@ -5,7 +5,7 @@ define([
   "text!src/rows.json"
 ], function(Table, TableView, ColumnTitles, Rows) {
 
-  describe("Component | Table - View", function() {
+  describe("View", function() {
 
     var view,
         model,

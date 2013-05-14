@@ -2,31 +2,37 @@
 	{
 		"artist": "Com Truise",
 		"album": "In Decay",
-		"track": "Open"
+		"track": "Open",
+		"link": "test.mp3"
 	},
 	{
 		"artist": "Com Truise",
 		"album": "In Decay",
-		"track": "84' Dreamin"
+		"track": "84' Dreamin",
+		"link": "test.mp3"
 	},
 	{
 		"artist": "Com Truise",
 		"album": "In Decay",
-		"track": "Dreambender"
+		"track": "Dreambender",
+		"link": "test.mp3"
 	},
 	{
 		"artist": "Com Truise",
 		"album": "In Decay",
-		"track": "Controlpop"
+		"track": "Controlpop",
+		"link": "test.mp3"
 	},
 	{
 		"artist": "Com Truise",
 		"album": "In Decay",
-		"track": "Colorvision"
+		"track": "Colorvision",
+		"link": "test.mp3"
 	},
 	{
 		"artist": "The Beatles",
 		"album": "Let It Be",
-		"track": "Let It Be"
+		"track": "Let It Be",
+		"link": "test.mp3"
 	}
 ]

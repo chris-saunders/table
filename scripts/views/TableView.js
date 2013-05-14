@@ -14,11 +14,12 @@ define([
 			this.model.on('change', function() {
 				self.render();
 			});
+			this.template = this.options.template || TableTpl;
+			this.template = Handlebars.compile(this.template);
 		},
 
 		render: function() {
-			var template = Handlebars.compile(TableTpl);
-			this.$el.html( template($.parseJSON(JSON.stringify(this.model))));
+			this.$el.html( this.template(this.model.toJSON()) );
 			return this;
 		}
 
